@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brawl Stars - Официальный фан-сайт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Oxanium:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        :root {
+            --primary: #FFD700;
+            --secondary: #4A235A;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --accent: #FF6B6B;
+            --gray: #6C757D;
+            --bs-font: 'Oxanium', sans-serif;
+            --main-font: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--bs-font);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-family: var(--bs-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #FFED4E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--light);
+        }
+
+        /* Шапка с видео */
+        .header {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.7);
+            z-index: 0;
+        }
+
+        .header-content {
+            text-align: center;
+            z-index: 1;
+            padding: 1rem;
+            max-width: 800px;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 26, 46, 0.95);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-family: var(--bs-font);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        /* Десктопное меню */
+        .desktop-menu {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Выпадающее меню для десктопа */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            padding: 0.8rem 1rem;
+            display: block;
+            white-space: nowrap;
+        }
+
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--secondary);
+            padding: 5rem 2rem 2rem;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-menu-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu-links li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu-links li:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu-links li:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu-links li:nth-child(5) { transition-delay: 0.5s; }
+
+        .mobile-menu-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.8rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Секция "Об игре" */
+        .about {
+            background-color: var(--dark);
+            padding-top: 6rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .feature {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Слайдер */
+        .slider-section {
+            background-color: var(--secondary);
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(26, 26, 46, 0.7);
+        }
+
+        .slide img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            color: var(--primary);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--primary);
+        }
+
+        /* Секция с формой */
+        .contact {
+            background-color: var(--dark);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--light);
+            font-family: var(--main-font);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-status {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-status.success {
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            display: block;
+        }
+
+        .form-status.error {
+            background-color: rgba(244, 67, 54, 0.2);
+            border: 1px solid #F44336;
+            color: #F44336;
+            display: block;
+        }
+
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Футер */
+        .footer {
+            background-color: #0F0F1A;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 1rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .header-content h1 {
+                font-size: 4rem;
+            }
+            
+            .about-features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .contact-container {
+                flex-direction: row;
+            }
+            
+            .contact-info {
+                flex: 1;
+                padding-right: 3rem;
+            }
+            
+            .contact-form {
+                flex: 1;
+                margin-top: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .desktop-menu {
+                display: block;
+            }
+        }
+
+        /* Анимация для формы связи */
+        .contact-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .contact-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--dark);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Дополнительные анимации */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-fire"></i> Brawl Stars
+            </a>
+            
+            <!-- Десктопное меню -->
+            <div class="desktop-menu">
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li class="dropdown">
+                        <a href="#about">Об игре <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#about">Основное</a></li>
+                            <li><a href="#characters">Персонажи</a></li>
+                            <li><a href="#modes">Режимы</a></li>
+                            <li><a href="#events">События</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#" id="contact-btn" class="btn">Связь с нами</a></li>
+                </ul>
+            </div>
+            
+            <!-- Кнопка мобильного меню -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-menu-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Об игре</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#" id="mobile-contact-btn" class="btn">Связь с нами</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Шапка с видео -->
+    <header class="header" id="home">
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-game-show-audience-applause-412-large.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="header-content">
+            <h1>Brawl Stars</h1>
+            <p>Динамичная многопользовательская игра от создателей Clash of Clans и Clash Royale. Сражайся в одиночку или с друзьями в различных игровых режимах!</p>
+            <a href="#about" class="btn">Узнать больше</a>
+        </div>
+    </header>
+
+    <!-- Секция "Об игре" -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Об игре</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Brawl Stars — это динамичная многопользовательская игра, где вы сражаетесь в одиночку или с друзьями в различных игровых режимах. Собирайте и улучшайте уникальных персонажей с особыми способностями, открывайте новые скины и покоряйте арену!</p>
+                    <p>Игра предлагает различные режимы: "Схватка" (3 на 3), "Осада", "Захват кристаллов", "Броулбол" и многие другие. Каждый режим требует особой стратегии и подхода.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>Мультиплеер</h3>
+                        <p>Сражайтесь с игроками со всего мира в режимах 3x3 или 1v1.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>Персонажи</h3>
+                        <p>Более 50 уникальных персонажей с разными способностями и стилями игры.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Соревнования</h3>
+                        <p>Участвуйте в турнирах и получайте эксклюзивные награды.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция со слайдером -->
+    <section class="slider-section" id="gallery">
+        <div class="container">
+            <h2>Популярные персонажи</h2>
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Shelly">
+                        <h3>Shelly</h3>
+                        <p>Универсальный боец, отлично подходит для новичков. Её суперспособность позволяет нанести огромный урон на близком расстоянии.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Colt">
+                        <h3>Colt</h3>
+                        <p>Стрелок, который выпускает очередь из шести пуль. Его суперспособность пробивает стены и наносит огромный урон.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="El Primo">
+                        <h3>El Primo</h3>
+                        <p>Танк, специализирующийся на ближнем бою. Его суперспособность позволяет прыгнуть на большое расстояние и приземлиться на врагов.</p>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <!-- Точки будут добавлены через JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с формой -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>Есть вопросы о игре Brawl Stars? Хотите поделиться отзывом или предложением? Заполните форму, и мы свяжемся с вами в ближайшее время!</p>
+                    <p>Наша команда фанатов Brawl Stars всегда рада помочь и ответить на ваши вопросы. Мы также регулярно проводим турниры и мероприятия для сообщества.</p>
+                    <a href="#" class="btn btn-secondary" id="form-contact-btn">Быстрая связь</a>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Имя *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Тема *</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение *</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" id="submitBtn">Отправить сообщение</button>
+                        <div class="form-status" id="formStatus"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Главная</a>
+                <a href="#about">Об игре</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#contact">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+            <p class="copyright">© 2023 Brawl Stars Fan Site. Данный сайт является фан-сайтом и не аффилирован с Supercell.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно формы -->
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2>Связь с нами</h2>
+            <form id="modalForm">
+                <div class="form-group">
+                    <label for="modalName">Имя *</label>
+                    <input type="text" id="modalName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalEmail">Email *</label>
+                    <input type="email" id="modalEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalSubject">Тема *</label>
+                    <input type="text" id="modalSubject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">Сообщение *</label>
+                    <textarea id="modalMessage" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn" id="modalSubmitBtn">Отправить сообщение</button>
+                <div class="form-status" id="modalFormStatus"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Конфигурация для Formcarry
+        const FORMCARRY_ENDPOINT = "https://formcarry.com/s/REPLACE_WITH_YOUR_FORM_ID";
+        
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileContactBtn = document.getElementById('mobile-contact-btn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Фиксированная навигация при скролле
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Слайдер
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const sliderDots = document.getElementById('sliderDots');
+        
+        let currentSlide = 0;
+        const totalSlides = 3;
+        
+        // Создание точек для слайдера
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+            });
+            sliderDots.appendChild(dot);
+        }
+        
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Обновление активной точки
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+        }
+        
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Автопрокрутка слайдера
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        // Остановка автопрокрутки при наведении
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        sliderContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // Функция отправки формы на Formcarry
+        async function submitForm(formData, submitBtn, statusElement, form) {
+            // Показываем состояние загрузки
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+            
+            try {
+                // Отправляем данные на Formcarry
+                const response = await fetch(FORMCARRY_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.code === 200) {
+                    // Успешная отправка
+                    statusElement.textContent = 'Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.';
+                    statusElement.classList.remove('error');
+                    statusElement.classList.add('success');
+                    
+                    // Сохраняем данные в localStorage
+                    saveFormData(formData);
+                    
+                    // Очищаем форму
+                    form.reset();
+                    
+                    // Обновляем URL с хэшем для истории
+                    const currentUrl = window.location.href.split('#')[0];
+                    const newUrl = currentUrl + '#form-submitted';
+                    window.history.pushState({ formSubmitted: true }, '', newUrl);
+                    
+                    return true;
+                } else {
+                    // Ошибка отправки
+                    throw new Error(result.message || 'Ошибка при отправке формы');
+                }
+            } catch (error) {
+                // Показываем сообщение об ошибке
+                statusElement.textContent = `Произошла ошибка при отправке: ${error.message}. Пожалуйста, попробуйте еще раз.`;
+                statusElement.classList.remove('success');
+                statusElement.classList.add('error');
+                console.error('Ошибка отправки формы:', error);
+                return false;
+            } finally {
+                // Скрываем состояние загрузки
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить сообщение';
+                
+                // Автоматически скрываем статус через 5 секунд
+                setTimeout(() => {
+                    statusElement.classList.remove('success', 'error');
+                    statusElement.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Основная форма отправки
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Получаем данные формы
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                source: 'Основная форма'
+            };
+            
+            // Показываем статус
+            formStatus.style.display = 'block';
+            
+            // Отправляем форму
+            await submitForm(formData, submitBtn, formStatus, contactForm);
+        });
+        
+        // Модальное окно
+        const contactModal = document.getElementById('contactModal');
+        const contactBtn = document.getElementById('contact-btn');
+        const formContactBtn = document.getElementById('form-contact-btn');
+        const closeModal = document.getElementById('closeModal');
+        const modalForm = document.getElementById('modalForm');
+        const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+        const modalFormStatus = document.getElementById('modalFormStatus');
+        
+        // Функция для открытия модального окна
+        function openModal() {
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Загружаем сохраненные данные
+            loadFormData();
+        }
+        
+        // Функция для закрытия модального окна
+        function closeModalFunc() {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Открытие модального окна по кнопкам
+        contactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+        
+        formContactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+        
+        mobileContactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+            // Закрываем мобильное меню
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+        });
+        
+        // Закрытие модального окна
+        closeModal.addEventListener('click', closeModalFunc);
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModalFunc();
+            }
+        });
+        
+        // Отправка формы в модальном окне
+        modalForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Получаем данные формы
+            const formData = {
+                name: document.getElementById('modalName').value,
+                email: document.getElementById('modalEmail').value,
+                subject: document.getElementById('modalSubject').value,
+                message: document.getElementById('modalMessage').value,
+                source: 'Модальная форма'
+            };
+            
+            // Показываем статус
+            modalFormStatus.style.display = 'block';
+            
+            // Отправляем форму
+            const success = await submitForm(formData, modalSubmitBtn, modalFormStatus, modalForm);
+            
+            // Закрываем модальное окно через 2 секунды при успешной отправке
+            if (success) {
+                setTimeout(() => {
+                    closeModalFunc();
+                }, 2000);
+            }
+        });
+        
+        // Сохранение данных формы в localStorage
+        function saveFormData(formData) {
+            localStorage.setItem('brawlStarsFormData', JSON.stringify(formData));
+        }
+        
+        // Загрузка данных формы из localStorage
+        function loadFormData() {
+            const savedData = localStorage.getItem('brawlStarsFormData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                document.getElementById('modalName').value = formData.name || '';
+                document.getElementById('modalEmail').value = formData.email || '';
+                document.getElementById('modalSubject').value = formData.subject || '';
+                document.getElementById('modalMessage').value = formData.message || '';
+                
+                // Также загружаем в основную форму
+                document.getElementById('name').value = formData.name || '';
+                document.getElementById('email').value = formData.email || '';
+                document.getElementById('subject').value = formData.subject || '';
+                document.getElementById('message').value = formData.message || '';
+            }
+        }
+        
+        // Загрузка сохраненных данных при открытии страницы
+        window.addEventListener('load', () => {
+            loadFormData();
+            
+            // Проверка URL для отображения статуса отправки формы
+            if (window.location.hash === '#form-submitted') {
+                formStatus.textContent = 'Ваша предыдущая форма была успешно отправлена!';
+                formStatus.classList.remove('error');
+                formStatus.classList.add('success');
+                formStatus.style.display = 'block';
+                
+                // Убираем хэш из URL через 5 секунд
+                setTimeout(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 5000);
+            }
+            
+            // Добавляем анимацию появления для элементов при загрузке
+            const animatedElements = document.querySelectorAll('.feature, .slide, .contact-form');
+            animatedElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+        });
+        
+        // Анимация для кнопок при наведении
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
